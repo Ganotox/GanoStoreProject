@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="edit-profile-container">
+        <h2>Редагування профілю</h2>
+        <form method="post" enctype="multipart/form-data" class="edit-profile-form">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-field">
+                    {{ field.errors }}
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {% if field.name == "avatar" %}
+                        <div class="file-upload-wrapper">
+                            <input type="file" id="{{ field.id_for_label }}" name="{{ field.name }}" hidden="hidden"/>
+                            <button type="button" class="btn-upload-file"
+                                    onclick="document.getElementById('{{ field.id_for_label }}').click();">Обрати файл
+                            </button>
+                            <span class="file-chosen-text">Файл не вибрано</span>
+                        </div>
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn-save">Зберегти зміни</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const fileInput = document.getElementById('id_avatar'); // замініть 'id_avatar' на справжній id поля вводу, якщо він відрізняється
+            const fileChosen = document.querySelector('.file-chosen-text');
+
+            fileInput.addEventListener('change', function (e) {
+                fileChosen.textContent = fileInput.files[0].name;
+            });
+        });
+    </script>
+{% endblock %}

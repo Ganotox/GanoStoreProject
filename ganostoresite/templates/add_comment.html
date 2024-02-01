@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="add-comment-container">
+        <h2>Додати коментар до програми: {{ program.title }}</h2>
+        <form method="post" action="{% url 'add_comment' program_id=program.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-submit-comment">Надіслати коментар</button>
+        </form>
+    </div>
+{% endblock %}

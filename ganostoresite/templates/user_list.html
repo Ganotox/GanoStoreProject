@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <script>
+        function openModal(element, isBlocked) {
+            const blockUrl = element.getAttribute('data-block-url');
+            const unblockUrl = element.getAttribute('data-unblock-url');
+            const modal = document.getElementById('blockUserModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const confirmBtn = document.getElementById('confirmBlock');
+
+            modalTitle.textContent = isBlocked === 'true' ? "Розблокувати користувача?" : "Блокувати користувача?";
+            confirmBtn.onclick = function () {
+                window.location.href = isBlocked === 'true' ? unblockUrl : blockUrl;
+            };
+
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('blockUserModal');
+            modal.style.display = "none";
+        }
+
+        // Закрити модальне вікно при кліку за його межами
+        window.onclick = function (event) {
+            const modal = document.getElementById('blockUserModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    <div class="user-list-container">
+        <h2>Список користувачів</h2>
+
+        <!-- Форма пошуку користувачів -->
+        <form method="get" action="{% url 'user_list' %}">
+            <input type="text" name="username" placeholder="Пошук по нікнейму">
+            <button type="submit" class="btn-search">Пошук</button>
+        </form>
+
+        <!-- Відображення користувачів -->
+        <div class="users-list">
+            {% for user in users %}
+                <div class="user">
+                    <h3>{{ user.username }}</h3>
+                    {% if user.avatar %}
+                        <img src="{{ user.avatar.url }}" alt="Аватар">
+                    {% else %}
+                        <img src="{% static '1.jpg' %}" alt="Стандартний аватар">
+                    {% endif %}
+                    <a href="javascript:void(0)"
+                       class="btn-block-user"
+                       data-block-url="{% url 'block_user' user.id %}"
+                       data-unblock-url="{% url 'unblock_user' user.id %}"
+                       onclick="openModal(this, '{{ user.is_blocked|yesno:'true,false' }}')">
+                        {{ user.is_blocked|yesno:'Розблокувати користувача,Заблокувати користувача' }}
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Модальне вікно для блокування/розблокування користувачів -->
+    <div id="blockUserModal" class="modal">
+        <div class="modal-content">
+            <h2 id="modalTitle">Підтвердіть дію</h2>
+            <button id="confirmBlock" class="btn-confirm">Підтвердити</button>
+            <button onclick="closeModal()" class="btn-cancel">Скасувати</button>
+        </div>
+    </div>
+{% endblock %}

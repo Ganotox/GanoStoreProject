@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="view-complaints-container">
+        <h2>Перегляд скарг</h2>
+
+        <form method="get" action="">
+            <input class="input-search-complaint" type="text" name="search" placeholder="Пошук за назвою програми"
+                   value="{{ request.GET.search }}">
+            <div class="custom-radio-button">
+                <input type="radio" id="all" name="status" value="all"
+                       {% if request.GET.status == "all" or not request.GET.status %}checked{% endif %}>
+                <label for="all">Всі</label>
+            </div>
+            <div class="custom-radio-button">
+                <input type="radio" id="resolved" name="status" value="resolved"
+                       {% if request.GET.status == "resolved" %}checked{% endif %}>
+                <label for="resolved">Вирішені</label>
+            </div>
+            <div class="custom-radio-button">
+                <input type="radio" id="unresolved" name="status" value="unresolved"
+                       {% if request.GET.status == "unresolved" %}checked{% endif %}>
+                <label for="unresolved">Не вирішені</label>
+            </div>
+            <button class="btn-filter-complaint" type="submit">Фільтрувати</button>
+        </form>
+
+
+        <div class="complaints-list">
+            {% for complaint in complaints %}
+                <div class="complaint">
+                    <h3>Скарга на програму: {{ complaint.program.title }}</h3>
+                    <p>Від: {{ complaint.author.username }}</p>
+                    <p>{{ complaint.content }}</p>
+                    <p>Статус: {% if complaint.resolved %}Вирішено{% else %}Не вирішено{% endif %}</p>
+                    {% if not complaint.resolved %}
+                        <a href="{% url 'resolve_complaint' complaint.id %}" class="btn-resolve">Відмітити як
+                            вирішено</a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

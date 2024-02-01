@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="manage-programs-container">
+        <h2>Управління програмами</h2>
+        <div class="programs-list">
+            {% for program in programs %}
+                <div class="program">
+                    <h3>{{ program.title }}</h3>
+                    <p>{{ program.description|truncatewords:20 }}</p>
+                    <a href="{% url 'edit_program' program.id %}" class="btn-edit">Редагувати</a>
+                    <a href="{% url 'delete_program' program.id %}" class="btn-delete">Видалити</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

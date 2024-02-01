@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="user-profile">
+        <h2>Профіль користувача: {{ user.username }}</h2>
+
+        <!-- Відображення аватарки -->
+        {% if user.avatar %}
+            <img src="{{ user.avatar.url }}" alt="Аватар {{ user.username }}" style="width: 100px; height: 100px;">
+        {% else %}
+            <img src="{% static '1.jpg' %}" alt="Стандартна аватарка" style="width: 100px; height: 100px;">
+        {% endif %}
+
+        <p>Email: {{ user.email }}</p>
+        <p>Статус:
+            {% if user.is_superuser %}
+                Адміністратор
+            {% elif user.is_staff %}
+                Модератор
+            {% else %}
+                Звичайний користувач
+            {% endif %}
+        </p>
+        <!-- Кнопки дій -->
+        <button class="btn-upload" onclick="location.href='{% url 'upload_program' %}'">Завантажити програму</button>
+        <button class="btn-my-program-list" onclick="location.href='{% url 'user_programs' user.username %}'">Мої
+            програми
+        </button>
+        <button class="btn-edit-profile" onclick="location.href='{% url 'edit_profile' %}'">Редагувати профіль</button>
+
+        {% if user.is_staff or user.is_superuser %}
+            <button class="btn-view-complaint" onclick="location.href='{% url 'view_complaints' %}'">Перегляд скарг
+            </button>
+            <button class="btn-view-all-users" onclick="location.href='{% url 'user_list' %}'">Переглянути всіх
+                користувачів
+            </button>
+        {% endif %}
+
+        {% if user.is_superuser %}
+            <button class="btn-manage-moderators" onclick="location.href='{% url 'manage_moderators' %}'">Керування
+                модераторами</a></button>
+        {% endif %}
+    </div>
+{% endblock %}

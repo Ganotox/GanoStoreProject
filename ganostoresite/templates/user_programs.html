@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Програми, завантажені користувачем</h2>
+
+    <div class="programs">
+        {% for program in programs %}
+            <div class="program">
+                <h3>{{ program.title }}</h3>
+                <p>{{ program.description }}</p>
+                <!-- Додайте інші деталі програми, якщо потрібно -->
+            </div>
+        {% empty %}
+            <p>Програми не знайдені.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

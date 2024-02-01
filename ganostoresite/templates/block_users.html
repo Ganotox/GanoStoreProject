@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="block-user-container">
+        <h2>Блокування користувача: {{ user.username }}</h2>
+        <p>Ви впевнені, що хочете заблокувати цього користувача?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-block">Так, заблокувати</button>
+            <a href="{% url 'manage_users' %}" class="btn-cancel">Скасувати</a>
+        </form>
+    </div>
+{% endblock %}

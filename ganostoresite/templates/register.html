@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="registration-container">
+        <h2>Реєстрація</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.username.label_tag }} <!-- Лейбл для імені користувача -->
+                {{ form.username }} <!-- Поле для імені користувача -->
+            </div>
+            <div class="form-group">
+                {{ form.email.label_tag }} <!-- Лейбл для електронної пошти -->
+                {{ form.email }} <!-- Поле для електронної пошти -->
+            </div>
+            <div class="form-group">
+                {{ form.avatar.label_tag }} <!-- Лейбл для аватара -->
+                {{ form.avatar }} <!-- Поле для аватара -->
+            </div>
+            <div class="form-group">
+                {{ form.password1.label_tag }} <!-- Лейбл для паролю -->
+                {{ form.password1 }} <!-- Поле для паролю -->
+            </div>
+            <div class="form-group">
+                {{ form.password2.label_tag }} <!-- Лейбл для підтвердження паролю -->
+                {{ form.password2 }} <!-- Поле для підтвердження паролю -->
+            </div>
+            <div class="form-group">
+                {{ form.secret_question.label_tag }} <!-- Лейбл для секретного питання -->
+                {{ form.secret_question }} <!-- Поле для секретного питання -->
+            </div>
+            <div class="form-group">
+                {{ form.secret_answer.label_tag }} <!-- Лейбл для відповіді на секретне питання -->
+                {{ form.secret_answer }} <!-- Поле для відповіді на секретне питання -->
+            </div>
+            <button type="submit" class="btn-register">Зареєструватися</button>
+        </form>
+    </div>
+{% endblock %}

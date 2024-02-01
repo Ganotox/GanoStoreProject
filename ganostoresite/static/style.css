@@ -1,0 +1,373 @@
+@font-face {
+    font-family: 'GoogleSans';
+    src: url('GoogleSans-Regular.ttf');
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+body {
+    color: #42313a; /* Основний колір тексту */
+    background-color: #f1dcc9; /* Світлий фон для контрасту */
+    font-family: 'GoogleSans', serif; /* Шрифт для контрасту */
+}
+
+/* Стилі для заголовка, навігаційної панелі та футера */
+header, footer {
+    background-color: #f1dcc9; /* Темно-коричневий фон */
+    color: #42313a;
+    text-align: center;
+    padding: 10px 0;
+    font-family: 'GoogleSans', serif;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 10px;
+    margin-bottom: 15px; /* Додаємо відступ знизу */
+}
+
+@media (max-width: 845px) {
+    header nav ul li {
+        display: block; /* Розміщує елементи один під одним */
+        margin: 10px 0; /* Збільшує відступи */
+    }
+
+    .btn-register, .btn-login, .btn-reset, .btn-upload,
+    .btn-download, .btn-rate, .btn-comment, .btn-submit-comment,
+    .btn-save, .btn-edit, .btn-delete, .btn-block, .btn-moderator,
+    .btn-add-moderator, .btn-remove-moderator, .btn-resolve, .btn-confirm,
+    .btn-cancel, .btn-toggle-theme, .btn-detail, .btn-submit-complaint,
+    .btn-search, .btn-home, .btn-about, .btn-contact, .btn-rules,
+    .btn-profile, .btn-logout, .btn-password-reset, .btn-confirm-moderator,
+    .btn-filter-moderator, .btn-remove-moderator, .btn-give-moderator,
+    .btn-view-all-users, .btn-my-program-list, .btn-edit-profile,
+    .btn-view-complaint, .btn-manage-moderators, .btn-search-detail,
+    .btn-upload-file {
+        margin-bottom: 15px; /* Додаємо відступ знизу */
+    }
+}
+
+
+header nav ul li a, footer a {
+    color: #f1dcc9;
+    text-decoration: none;
+    font-family: 'GoogleSans', serif;
+    white-space: nowrap;
+}
+
+@media (max-width: 845px) {
+    header nav ul li a {
+        display: block; /* Розміщує елементи один під одним */
+        margin: 5px 0; /* Зменшені вертикальні відступи */
+        padding: 10px; /* Додайте певний padding для кращого вигляду */
+    }
+}
+
+footer {
+    margin-top: 20px;
+}
+
+/* Стилі для кнопок */
+.btn-register, .btn-login, .btn-reset, .btn-upload,
+.btn-download, .btn-rate, .btn-comment, .btn-submit-comment,
+.btn-save, .btn-edit, .btn-delete, .btn-block, .btn-moderator,
+.btn-add-moderator, .btn-remove-moderator, .btn-resolve, .btn-confirm,
+.btn-cancel, .btn-toggle-theme, .btn-detail, .btn-submit-complaint,
+.btn-search, .btn-home, .btn-about, .btn-contact, .btn-rules,
+.btn-profile, .btn-logout, .btn-login, .btn-register,
+.btn-password-reset, .btn-confirm-moderator, .btn-filter-moderator,
+.btn-remove-moderator, .btn-give-moderator, .btn-view-all-users,
+.btn-my-program-list, .btn-edit-profile, .btn-view-complaint, .btn-manage-moderators,
+.btn-search-detail, .btn-upload-file, .upload-program-container input,
+.upload-program-container textarea,
+.upload-program-container select, .edit-profile-container input,
+.edit-profile-container textarea,
+.edit-profile-container select, .input-search-complaint, .btn-filter-complaint, .btn-complaint,
+input[name="username"], input[name="password"], .input-email-reg {
+    background-color: #6c2d2c; /* Світло-коричневий колір кнопок */
+    color: #f1dcc9;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.6s, border-radius 0.6s;
+    text-decoration-line: blink;
+    font-family: 'GoogleSans', serif;
+    margin-bottom: 15px; /* Додаємо відступ знизу */
+}
+
+.btn-register:hover, .btn-login:hover, .btn-reset:hover,
+.btn-upload:hover, .btn-download:hover, .btn-rate:hover,
+.btn-comment:hover, .btn-submit-comment:hover, .btn-save:hover,
+.btn-edit:hover, .btn-delete:hover, .btn-block:hover,
+.btn-moderator:hover, .btn-add-moderator:hover,
+.btn-remove-moderator:hover, .btn-resolve:hover, .btn-confirm:hover,
+.btn-cancel:hover, .btn-toggle-theme:hover, .btn-detail:hover,
+.btn-submit-complaint:hover, .btn-search:hover, .btn-home:hover,
+.btn-about:hover, .btn-contact:hover, .btn-rules:hover,
+.btn-profile:hover, .btn-logout:hover, .btn-login:hover,
+.btn-register:hover, .btn-password-reset:hover,
+.btn-confirm-moderator:hover, .btn-filter-moderator:hover,
+.btn-remove-moderator:hover, .btn-give-moderator:hover,
+.btn-view-all-users:hover, .btn-my-program-list:hover,
+.btn-edit-profile:hover, .btn-view-complaint:hover, .btn-manage-moderators:hover,
+.btn-search-detail:hover, .btn-upload-file:hover,
+.upload-program-container input:hover, .upload-program-container textarea:hover,
+.upload-program-container select:hover, .edit-profile-container input:hover,
+.edit-profile-container textarea:hover,
+.edit-profile-container select:hover, .input-search-complaint:hover,
+.btn-filter-complaint:hover, .btn-complaint:hover {
+    background-color: #9f4636; /* Насичений коричневий при наведенні */
+    border-radius: 10px;
+}
+
+/* Стилі контейнерів */
+.registration-container, .login-container, .password-reset-container,
+.about-us-container, .contact-container, .home-container,
+.user-profile-container, .upload-program-container,
+.program-detail-container, .edit-profile-container,
+.manage-programs-container, .manage-users-container,
+.manage-moderators-container, .view-complaints-container,
+.edit-program-container, .delete-program-container,
+.add-comment-container, .submit-complaint-container,
+.search-container, .block-user-container, .rules-container {
+    background: #f1dcc9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Стилі заголовків */
+h1, h2, h3, h4, h5, h6 {
+    color: #9f4636; /* Насичений коричневий для заголовків */
+    font-family: 'GoogleSans', serif;
+}
+
+/* Адаптивність для всіх контейнерів */
+@media (max-width: 845px) {
+    .registration-container, .login-container, .password-reset-container,
+    .about-us-container, .contact-container, .home-container,
+    .user-profile-container, .upload-program-container,
+    .program-detail-container, .edit-profile-container,
+    .manage-programs-container, .manage-users-container,
+    .manage-moderators-container, .view-complaints-container,
+    .edit-program-container, .delete-program-container,
+    .add-comment-container, .submit-complaint-container,
+    .search-container, .block-user-container, .rules-container {
+        width: 90%;
+        padding: 10px;
+    }
+}
+
+.search-input::placeholder, .input-search-complaint::placeholder {
+    color: #f1dcc9; /* Або використайте будь-який інший колір */
+    font-family: 'GoogleSans', serif;
+}
+
+.program {
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    flex: 0 1 calc(50% - 20px); /* Використовуємо flex-grow, flex-shrink та flex-basis */
+    box-sizing: border-box; /* Для коректного розрахунку ширини з урахуванням padding та border */
+}
+
+.programs-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #f1dcc9;
+    gap: 20px; /* Додаємо відступ між елементами */
+}
+
+/* Адаптивність для програм */
+@media (max-width: 845px) {
+    .program {
+        flex: 0 1 calc(100% - 20px); /* На малих екранах займає всю ширину */
+    }
+}
+
+.program-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+}
+
+.program-actions, .comment, .comment-form textarea {
+    margin-top: 20px;
+}
+
+.user-details img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.search-input {
+    background-color: #9f4636; /* Світло-коричневий колір кнопок */
+    color: #f1dcc9;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+    text-decoration-line: blink;
+    font-family: 'GoogleSans', serif;
+}
+
+.btn-search svg {
+    fill: #f1dcc9;
+    vertical-align: middle;
+}
+
+/* Стилі для модального вікна */
+.modal {
+    display: none; /* Приховано за замовчуванням */
+    position: fixed; /* Фіксована позиція */
+    z-index: 1; /* Вікно буде поверх інших елементів */
+    left: 0;
+    top: 0;
+    width: 100%; /* Повна ширина */
+    height: 100%; /* Повна висота */
+    overflow: auto; /* У разі великого вмісту додається прокрутка */
+    background-color: #f1dcc9; /* Чорний фон з прозорістю */
+}
+
+/* Стилі для контейнера модального вікна */
+.modal-content {
+    background-color: #f1dcc9;
+    margin: 15% auto; /* Відступ зверху та по центру */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Ширина вікна */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* Тінь */
+    border-radius: 8px; /* Закруглені краї */
+}
+
+/* Кнопка закриття */
+.close {
+    color: #42313a;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #42313a;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.messages div {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.error {
+    background-color: #f1dcc9;
+    border-color: #ebccd1;
+    color: #f1dcc9;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    font-family: 'GoogleSans', serif;
+}
+
+.custom-radio-button input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.custom-radio-button label {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+    border: 1px solid #9f4636;
+}
+
+.custom-radio-button:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.custom-radio-button input:checked ~ .checkmark {
+    background-color: #9f4636;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none; /* Спочатку не відображається */
+    top: 7.5px;
+    left: 7.5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white; /* Забезпечує видимість в середині .checkmark */
+}
+
+
+.custom-radio-button input:checked ~ .checkmark:after {
+    display: block; /* Робить :after видимим, коли радіокнопка вибрана */
+}
+
+.logo-left {
+    height: 90px;
+    width: auto;
+    margin: 0px 10px 10px 10px;
+    float: right;
+    vertical-align: middle;
+}
+
+.logo-right {
+    height: 90px;
+    width: auto;
+    margin: 0px 10px 10px 10px;
+    float: left;
+    vertical-align: middle;
+}
+
+.logo-left-left {
+    display: none;
+}
+
+.logo-right-right {
+    display: none;
+}

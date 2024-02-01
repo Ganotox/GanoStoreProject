@@ -1,0 +1,100 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GanoStore</title>
+    <link id="theme-style" rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<header>
+    <img src="{% static '12.svg' %}" alt="Логотип GanoStore" class="logo-left">
+    <img src="{% static '21.svg' %}" alt="Другий логотип" class="logo-right">
+    <img src="{% static '2222.svg' %}" alt="Логотип GanoStore" class="logo-left-left">
+    <img src="{% static '1111.svg' %}" alt="Другий логотип" class="logo-right-right">
+    <nav>
+        <ul>
+            <li>
+                <button id="toggle-theme-btn" class="btn-toggle-theme">Переключити на темну/світлу тему</button>
+            </li>
+            <li>
+                <a class="btn-home" href="{% url 'home' %}">Головна</a>
+            </li>
+            <li>
+                <a class="btn-about" href="{% url 'about_us' %}">Про нас</a>
+            </li>
+            <li>
+                <a class="btn-contact" href="{% url 'contact' %}">Контакти</a>
+            </li>
+            <li>
+                <a class="btn-rules" href="{% url 'rules' %}">Правила</a>
+            </li>
+            <!-- Додайте інші посилання тут -->
+            {% if user.is_authenticated %}
+                <li>
+                    <a class="btn-profile" href="{% url 'user_profile' user.username %}">Мій профіль</a>
+                </li>
+                <li>
+                    <a class="btn-logout" href="{% url 'logout' %}">Вийти</a>
+                </li>
+            {% else %}
+                <li>
+                    <a class="btn-login" href="{% url 'login' %}">Вхід</a>
+                </li>
+                <li>
+                    <a class="btn-register" href="{% url 'register' %}">Реєстрація</a>
+                </li>
+            {% endif %}
+        </ul>
+        <form action="{% url 'search' %}" method="get">
+            <input class="search-input" type="text" name="q" placeholder="Пошук...">
+            <button class="btn-search" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+                     viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                </svg>
+            </button>
+        </form>
+    </nav>
+</header>
+
+<main>
+    {% block content %}
+        <!-- Основний вміст сторінки -->
+    {% endblock %}
+</main>
+
+<footer>
+    <p>© 2024 GanoStore. Всі права захищені.</p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleThemeBtn = document.getElementById('toggle-theme-btn');
+        const themeStyleLink = document.getElementById('theme-style');
+
+        function setTheme(themeName) {
+            themeStyleLink.setAttribute('href', themeName === 'dark' ? '{% static 'styletwo.css' %}' : '{% static 'style.css' %}');
+            localStorage.setItem('theme', themeName);
+        }
+
+        function toggleTheme() {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        }
+
+        // Встановлення теми при завантаженні сторінки
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        setTheme(currentTheme);
+
+        toggleThemeBtn.addEventListener('click', toggleTheme);
+    });
+</script>
+
+
+</body>
+</html>

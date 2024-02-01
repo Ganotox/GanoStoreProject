@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="search-container">
+        <h2>Результати пошуку</h2>
+        {% if programs %}
+            <h3>Програми</h3>
+            <div class="search-results">
+                {% for program in programs %}
+                    <div class="search-item">
+                        <h4>{{ program.title }}</h4>
+                        <p>{{ program.description|truncatewords:20 }}</p>
+                        <button class="btn-search-detail" onclick="location.href='{% url 'program_detail' program.id %}'">Детальніше</button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if users %}
+            <h3>Користувачі</h3>
+            <div class="search-results">
+                {% for user in users %}
+                    <div class="search-item">
+                        <h4>{{ user.username }}</h4>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

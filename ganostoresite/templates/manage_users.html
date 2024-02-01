@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="manage-users-container">
+        <h2>Управління користувачами</h2>
+        <div class="users-list">
+            {% for user in users %}
+                <div class="user">
+                    <h3>{{ user.username }}</h3>
+                    <p>Email: {{ user.email }}</p>
+                    <a href="{% url 'block_user' user.id %}" class="btn-block">Блокувати</a>
+                    <a href="{% url 'toggle_moderator' user.id %}" class="btn-moderator">Надати/Забрати статус
+                        модератора</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

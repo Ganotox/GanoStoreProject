@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="submit-complaint-container">
+        <h2>Подання скарги на програму: "{{ program.title }}"</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-submit-complaint">Подати скаргу</button>
+        </form>
+        <a href="{% url 'program_detail' program_id=program.id %}" class="btn-cancel">Скасувати</a>
+    </div>
+{% endblock %}

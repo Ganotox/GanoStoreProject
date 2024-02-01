@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="rate-program-container">
+        <h2>Оцінити програму: {{ program.title }}</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-submit-rating">Надіслати оцінку</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="upload-program-container">
+        <h2>Завантаження програми</h2>
+        <form method="post" enctype="multipart/form-data" class="upload-form">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-field">
+                    {{ field.errors }}
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {% if field.name == "program_file" or field.name == "image" %}
+                        <div class="file-upload-wrapper">
+                            <input type="file" id="{{ field.id_for_label }}" name="{{ field.name }}" hidden="hidden"/>
+                            <button type="button" class="btn-upload-file"
+                                    onclick="document.getElementById('{{ field.id_for_label }}').click();">Обрати файл
+                            </button>
+                            <span class="file-chosen-text">Файл не вибрано</span>
+                        </div>
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn-upload">Завантажити</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const fileInputs = document.querySelectorAll('input[type="file"]');
+            fileInputs.forEach(input => {
+                input.addEventListener('change', function (e) {
+                    const nextSibling = input.nextElementSibling;
+                    nextSibling.textContent = input.files[0].name;
+                });
+            });
+        });
+    </script>
+{% endblock %}

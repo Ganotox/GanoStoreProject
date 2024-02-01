@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="program-detail-container">
+        <h2>{{ program.title }}</h2>
+        <img src="{{ program.image.url }}" alt="Зображення програми" class="program-image">
+        <p>{{ program.description }}</p>
+        <p><strong>Категорія:</strong> {{ program.category.name }}</p>
+        <p><strong>Жанр:</strong> {{ program.genre.name }}</p>
+        <p><strong>Дата завантаження:</strong> {{ program.uploaded_at }}</p>
+        <p><strong>Автор:</strong> {{ program.uploaded_by.username }}</p>
+
+0.        <h3>Середній рейтинг: {{ average_rating|default:"Не оцінено" }}</h3>
+
+        <div class="program-actions">
+            <a href="{{ program.program_file.url }}" class="btn-download">Скачати</a>
+
+            {% if request.user == program.uploaded_by or user.is_staff or user.is_superuser %}
+                <a href="{% url 'edit_program' program.id %}" class="btn-edit">Редагувати</a>
+                <a href="{% url 'delete_program' program.id %}" class="btn-delete">Видалити</a>
+            {% endif %}
+
+            {% if user.is_authenticated and not user.is_blocked %}
+                <a href="{% url 'submit_complaint' program_id=program.id %}" class="btn-complaint">Поскаржитись</a>
+                <a href="{% url 'rate_program' program_id=program.id %}" class="btn-rate">Оцінити</a>
+                <a href="{% url 'add_comment' program_id=program.id %}" class="btn-comment">Коментувати</a>
+            {% endif %}
+        </div>
+
+
+        <div class="comments-section">
+            <h3>Коментарі</h3>
+            {% for comment in program.comments.all %}
+                <div class="comment">
+                    <p><strong>{{ comment.author.username }}</strong>: {{ comment.content }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

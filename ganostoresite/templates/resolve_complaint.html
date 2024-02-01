@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="resolve-complaint-container">
+        <h2>Вирішення скарги</h2>
+        <p>Ви впевнені, що хочете відмітити скаргу як вирішену?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-confirm">Так, відмітити як вирішено</button>
+        </form>
+        <a href="{% url 'view_complaints' %}" class="btn-cancel">Скасувати</a>
+    </div>
+{% endblock %}

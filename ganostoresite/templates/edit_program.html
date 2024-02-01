@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="edit-program-container">
+        <h2>Редагування програми</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-save">Зберегти зміни</button>
+        </form>
+    </div>
+{% endblock %}
